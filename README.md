@@ -2,7 +2,7 @@
 
 # Todo list
 
-Todo list is a simple web app that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete, delete a task or add a new task and you can clean all of the completed tasks if you want.
+Todo list is a simple web app that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete, delete a task or add a new task and you can even clean all of the completed tasks if you want.
 
 
 ## Built With

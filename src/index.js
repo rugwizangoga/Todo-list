@@ -25,11 +25,11 @@ let Tasks = [
 lst.innerHTML = `
                   <li class="listitem first">
                       Today's To do
-                      <i class="fa fa-refresh" aria-hidden="true"></i>  
+                      <i class="fa fa-refresh" aria-hidden="true"></i>
                   </li>
                   <li class="listitem two">
                       Add to your list...
-                      <i class="fa-thin fa-arrow-turn-down-left"></i>
+                      <i class="material-icons">subdirectory_arrow_left</i>
                   </li>
                   </li>
                   <li class="listitem last"><button type="button" class="complete">clear all completed</button></li>
