@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Webpack
+# Todo list
 
-Webpack project is a basic project that shows how to setup webpack to be used as your project bundler in a development mode
+Todo list is a simple web app that helps to organize your day. It simply lists the things that you need to do and allows you to mark them as complete, delete a task or add a new task and you can clean all of the completed tasks if you want.
 
 
 ## Built With
@@ -16,9 +16,9 @@ Webpack project is a basic project that shows how to setup webpack to be used as
 
 ## Getting Started
 
-$ git clone git@github.com:rugwizangoga/Webpack
+$ git clone git@github.com:rugwizangoga/Todo-list.git
 
-$ cd Webpack
+$ cd Todo-list
 
 $ run npm start
 
