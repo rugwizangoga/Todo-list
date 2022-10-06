@@ -12,13 +12,15 @@ Todo list is a simple web app that helps to organize your day. It simply lists t
 - HTML
 - CSS
 - Javascript
-- webpack
+- Es6 and webpack
 
 ## Getting Started
 
 $ git clone git@github.com:rugwizangoga/Todo-list.git
 
 $ cd Todo-list
+
+$ run npm run build
 
 $ run npm start
 

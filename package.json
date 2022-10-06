@@ -4,6 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": "true",
   "scripts": {
+    "build": "webpack",
     "dev": "webpack --mode development",
     "start": "webpack serve --open"
   },

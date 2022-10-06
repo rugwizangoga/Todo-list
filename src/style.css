@@ -42,6 +42,7 @@ header {
   font-size: 18px;
   font-weight: 700;
 }
+
 .two {
   color: rgb(185, 189, 190);
 }
@@ -53,9 +54,7 @@ header {
 
 .complete {
   width: fit-content;
-  height: fit-content;
   border: none;
-  background-color: #fff;
   font-size: 18px;
   background-color: #ccc;
 }
