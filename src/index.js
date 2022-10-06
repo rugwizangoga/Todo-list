@@ -42,8 +42,7 @@ let ind = 2;
 Tasks.forEach((task) => {
   const litem = document.createElement('li');
   litem.innerHTML = `
-  <div><label for="checkbox">checkbox
-  <input type="checkbox">&nbsp;&nbsp; ${task.description}</label>
+  <div><label for=${task.index}>checkbox<input id=${task.index} type="checkbox"></label>&nbsp;&nbsp; ${task.description}
   </div>
                       <img src=${more} alt="more_vert">
                     `;
