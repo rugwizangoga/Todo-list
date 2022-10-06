@@ -4,7 +4,6 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": "true",
   "scripts": {
-    "serve:lhci": "NODE_ENV=development npm start",
     "build": "webpack",
     "dev": "webpack --mode development",
     "start": "webpack serve --open"
