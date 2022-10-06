@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import './style.css';
 import sync from './assets/images/sync.png';
 import enter from './assets/images/subdirectory_arrow_left.png';
@@ -6,7 +5,7 @@ import more from './assets/images/more_vert.png';
 
 const lst = document.querySelector('.list');
 
-let Tasks = [
+const Tasks = [
   {
     description: 'Wash the dishes',
     completed: true,
@@ -37,12 +36,12 @@ lst.innerHTML = `
                   <li class="listitem last"><button type="button" class="complete">clear all completed</button></li>
                 `;
 
-Tasks = _.sortBy(Tasks, [(task) => task.index]);
+Tasks.sort((a, b) => a.index - b.index);
 let ind = 2;
 Tasks.forEach((task) => {
   const litem = document.createElement('li');
   litem.innerHTML = `
-  <div><label for=${task.index}>checkbox<input id=${task.index} type="checkbox"></label>&nbsp;&nbsp; ${task.description}
+  <div><input id=${task.index} type="checkbox">&nbsp;&nbsp; ${task.description}
   </div>
                       <img src=${more} alt="more_vert">
                     `;
