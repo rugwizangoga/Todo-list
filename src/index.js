@@ -1,5 +1,8 @@
 import _ from 'lodash';
 import './style.css';
+import sync from './assets/images/sync.png';
+import enter from './assets/images/subdirectory_arrow_left.png';
+import more from './assets/images/more_vert.png';
 
 const lst = document.querySelector('.list');
 
@@ -24,11 +27,11 @@ let Tasks = [
 lst.innerHTML = `
                   <li class="listitem first">
                       Today's To do
-                      <i class="material-icons">sync</i>
+                      <img src=${sync} alt="sync">
                   </li>
                   <li class="listitem two">
                       Add to your list...
-                      <i class="material-icons">subdirectory_arrow_left</i>
+                      <img src=${enter} alt="subdirectory_arrow_left">
                   </li>
                   </li>
                   <li class="listitem last"><button type="button" class="complete">clear all completed</button></li>
@@ -39,7 +42,7 @@ let ind = 2;
 Tasks.forEach((task) => {
   const litem = document.createElement('li');
   litem.innerHTML = `<div><input type="checkbox">&nbsp;&nbsp; ${task.description}</div>
-                      <i class="material-icons">more_vert</i>
+                      <img src=${more} alt="more_vert">
                     `;
   litem.classList.add('listitem');
   lst.insertBefore(litem, lst.children[ind]);
