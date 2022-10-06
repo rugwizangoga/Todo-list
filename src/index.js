@@ -41,7 +41,10 @@ Tasks = _.sortBy(Tasks, [(task) => task.index]);
 let ind = 2;
 Tasks.forEach((task) => {
   const litem = document.createElement('li');
-  litem.innerHTML = `<div><input type="checkbox">&nbsp;&nbsp; ${task.description}</div>
+  litem.innerHTML = `
+  <div><label for="checkbox">checkbox
+  <input type="checkbox">&nbsp;&nbsp; ${task.description}</label>
+  </div>
                       <img src=${more} alt="more_vert">
                     `;
   litem.classList.add('listitem');
