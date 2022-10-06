@@ -16,7 +16,7 @@ main {
   justify-content: space-between;
 }
 
-header {
+.header {
   width: 100%;
   min-height: 5vh;
   background-color: #1e1f24;
@@ -44,7 +44,7 @@ header {
 }
 
 .two {
-  color: rgb(185, 189, 190);
+  color: #b9bdbe;
 }
 
 .last {
@@ -53,14 +53,6 @@ header {
 }
 
 .complete {
-  width: fit-content;
   border: none;
-  font-size: 18px;
   background-color: #ccc;
-}
-
-footer {
-  width: 100%;
-  min-height: 5vh;
-  background-color: #1e1f24;
 }

@@ -24,7 +24,7 @@ let Tasks = [
 lst.innerHTML = `
                   <li class="listitem first">
                       Today's To do
-                      <i class="fa fa-refresh" aria-hidden="true"></i>
+                      <i class="material-icons">sync</i>
                   </li>
                   <li class="listitem two">
                       Add to your list...
@@ -39,7 +39,7 @@ let ind = 2;
 Tasks.forEach((task) => {
   const litem = document.createElement('li');
   litem.innerHTML = `<div><input type="checkbox">&nbsp;&nbsp; ${task.description}</div>
-                      <i class="fa-solid fa-ellipsis-vertical"></i>
+                      <i class="material-icons">more_vert</i>
                     `;
   litem.classList.add('listitem');
   lst.insertBefore(litem, lst.children[ind]);
