@@ -1,5 +1,6 @@
 import './style.css';
-import { printtasks, add, edit } from './CRUD.js';
+import { printtasks, add, edit, dele } from './CRUD.js';
+import { isComplete } from './status_Update';
 
 printtasks();
 
@@ -13,10 +14,21 @@ newtask.addEventListener('change', newtask.addEventListener('keypress', (e) => {
 }));
 
 document.addEventListener('click', (e) => {
-  if (!e.target.matches('.more')) {
-    return;
-  }
+  if (e.target.matches('.more')) {
   const { id } = e.target;
   const trash = document.getElementById(id);
   edit(trash);
+  }
+  else if (e.target.matches('.check')){
+    const {id}= e.target;
+    isComplete(id);
+  }
+
+  else if (e.target.matches('.all')){
+    dele()
+  }
+  else {
+    return;
+  }
 });
+
