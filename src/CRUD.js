@@ -3,19 +3,29 @@ import enter from './assets/images/subdirectory_arrow_left.png';
 import more from './assets/images/more_vert.png';
 import dbin from './assets/images/trash.png';
 
-let Taskslist = [];
+export let Taskslist = [];
 let ind = 2;
 
 const lst = document.querySelector('.list');
 
 const printtask = (task) => {
   const litem = document.createElement('li');
+  let newid= task.description+task.index.toString();
+  if (task.completed=== true){
+    litem.innerHTML = `
+    <div><input id= ${newid} class='check' type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete active" readonly>
+    </div>
+    <img id=${task.description} class="more" src=${more} alt="more_vert">
+  
+                      `;
+  }
+  else{
   litem.innerHTML = `
-  <div><input type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete" readonly>
+  <div><input id= ${newid} class='check' type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete" readonly>
   </div>
   <img id=${task.description} class="more" src=${more} alt="more_vert">
 
-                    `;
+                    `;}
   litem.classList.add('listitem');
   lst.insertBefore(litem, lst.children[ind]);
   ind += 1;
@@ -33,7 +43,7 @@ export const printtasks = () => {
                     <img src=${enter} alt="subdirectory_arrow_left">
                   </li>
                   </li>
-                  <li class="listitem last"><button type="button" class="complete">clear all completed</button></li>
+                  <li class="listitem last"><button type="button" class="complete all">clear all completed</button></li>
                 `;
   if (window.localStorage.getItem('tasks') !== null) {
     const tasks = JSON.parse(window.localStorage.getItem('tasks'));
@@ -92,3 +102,15 @@ export const edit = (trash) => {
     });
   });
 };
+
+export const dele = ()=>{
+  Taskslist = Taskslist.filter((b) => b.completed !== true);
+  let newind = 1;
+  Taskslist.forEach((task) => {
+    task.index = newind;
+    newind += 1;
+  });
+  window.localStorage.setItem('tasks', JSON.stringify(Taskslist));
+  ind =2
+  printtasks();
+}

@@ -26,6 +26,10 @@ img {
   background-color: black;
 }
 
+.active {
+  text-decoration: line-through;
+}
+
 .list {
   width: 90%;
   min-height: 70vh;
