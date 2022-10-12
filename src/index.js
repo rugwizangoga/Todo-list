@@ -1,12 +1,17 @@
 import './style.css';
-import { printtasks, add, edit, dele } from './CRUD.js';
-import { isComplete } from './status_Update';
+import { printtasks, add, edit, deleteItem, dele } from './CRUD.js';
+import { isComplete } from './status_Update.js';
+
+let numEdited= {
+  edited: 0
+};
 
 printtasks();
 
 const newtask = document.querySelector('.complete');
 
 newtask.addEventListener('change', newtask.addEventListener('keypress', (e) => {
+  console.log('add something?')
   if (e.key === 'Enter') {
     add(newtask.value);
     newtask.value = '';
@@ -14,21 +19,20 @@ newtask.addEventListener('change', newtask.addEventListener('keypress', (e) => {
 }));
 
 document.addEventListener('click', (e) => {
-  if (e.target.matches('.more')) {
   const { id } = e.target;
-  const trash = document.getElementById(id);
-  edit(trash);
+  if (e.target.matches('.more')) {
+  edit(id, numEdited);
   }
-  else if (e.target.matches('.check')){
-    const {id}= e.target;
+  if (e.target.matches('.check')){
     isComplete(id);
   }
 
-  else if (e.target.matches('.all')){
+  if (e.target.matches('.all')){
     dele()
   }
-  else {
-    return;
-  }
-});
 
+  if(numEdited.edited > 0) {
+    deleteItem();
+  }
+
+});
