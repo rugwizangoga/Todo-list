@@ -1,10 +1,18 @@
 import './style.css';
+import sync from './assets/images/sync.png';
+import enter from './assets/images/subdirectory_arrow_left.png';
 import { printtasks, add, edit, deleteItem, dele } from './CRUD.js';
 import { isComplete } from './status_Update.js';
 
 let numEdited= {
   edited: 0
 };
+
+const title = document.getElementById('title');
+const addInput = document.getElementById('add');
+
+title.src= sync;
+addInput.src=enter;
 
 printtasks();
 

@@ -1,14 +1,11 @@
-import sync from './assets/images/sync.png';
-import enter from './assets/images/subdirectory_arrow_left.png';
 import more from './assets/images/more_vert.png';
 import dbin from './assets/images/trash.png';
 
 export let Taskslist = [];
 let PostionToInsert = 2;
-let delButtonsList;
 
 
-const List = document.querySelector('.list');
+const List = document.querySelector('.newlist');
 
 const printtask = (task) => {
   const listItem = document.createElement('li');
@@ -34,19 +31,7 @@ const printtask = (task) => {
 };
 
 export const printtasks = () => {
-  List.innerHTML = '';
-  List.innerHTML += `
-                  <li class="listitem first">
-                      Today's To do
-                      <img src=${sync} alt="sync">
-                  </li>
-                  <li class="listitem">
-                    <input class="complete" type="text" placeholder="Add to your list...">
-                    <img src=${enter} alt="subdirectory_arrow_left">
-                  </li>
-                  </li>
-                  <li class="listitem last"><button type="button" class="complete all">clear all completed</button></li>
-                `;
+  List.replaceChildren();
   if (window.localStorage.getItem('tasks') !== null) {
     const tasks = JSON.parse(window.localStorage.getItem('tasks'));
     Taskslist = tasks;
