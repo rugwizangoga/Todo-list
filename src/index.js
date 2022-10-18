@@ -1,6 +1,20 @@
 import './style.css';
-import { printtasks, add, edit, dele } from './CRUD.js';
-import { isComplete } from './status_Update';
+import sync from './assets/images/sync.png';
+import enter from './assets/images/subdirectory_arrow_left.png';
+import {
+  printtasks, add, edit, deleteItem, dele,
+} from './CRUD.js';
+import isComplete from './status_Update.js';
+
+const numEdited = {
+  edited: 0,
+};
+
+const title = document.getElementById('title');
+const addInput = document.getElementById('add');
+
+title.src = sync;
+addInput.src = enter;
 
 printtasks();
 
@@ -8,27 +22,27 @@ const newtask = document.querySelector('.complete');
 
 newtask.addEventListener('change', newtask.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
-    add(newtask.value);
-    newtask.value = '';
+    if (newtask.value !== '') {
+      add(newtask.value);
+      newtask.value = '';
+    }
   }
 }));
 
 document.addEventListener('click', (e) => {
-  if (e.target.matches('.more')) {
   const { id } = e.target;
-  const trash = document.getElementById(id);
-  edit(trash);
+  if (e.target.matches('.more')) {
+    edit(id, numEdited);
   }
-  else if (e.target.matches('.check')){
-    const {id}= e.target;
+  if (e.target.matches('.check')) {
     isComplete(id);
   }
 
-  else if (e.target.matches('.all')){
-    dele()
+  if (e.target.matches('.all')) {
+    dele();
   }
-  else {
-    return;
+
+  if (numEdited.edited > 0) {
+    deleteItem();
   }
 });
-

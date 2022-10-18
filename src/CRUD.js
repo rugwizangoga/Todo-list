@@ -1,50 +1,42 @@
-import sync from './assets/images/sync.png';
-import enter from './assets/images/subdirectory_arrow_left.png';
+/* eslint-disable max-len */
+
 import more from './assets/images/more_vert.png';
 import dbin from './assets/images/trash.png';
 
-export let Taskslist = [];
-let ind = 2;
+let Taskslist = [];
+let PostionToInsert = 2;
 
-const lst = document.querySelector('.list');
+const List = document.querySelector('.list');
 
 const printtask = (task) => {
-  const litem = document.createElement('li');
-  let newid= task.description+task.index.toString();
-  if (task.completed=== true){
-    litem.innerHTML = `
-    <div><input id= ${newid} class='check' type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete active" readonly>
+  const listItem = document.createElement('li');
+  const checkBoxId = task.description + task.index.toString();
+  if (task.completed === true) {
+    listItem.innerHTML = `
+    <div><input id= ${checkBoxId} class='check' type="checkbox" checked=true>&nbsp;&nbsp;<input type="text" value=${task.description} class="complete active" readonly>
     </div>
     <img id=${task.description} class="more" src=${more} alt="more_vert">
   
                       `;
-  }
-  else{
-  litem.innerHTML = `
-  <div><input id= ${newid} class='check' type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete" readonly>
+  } else {
+    listItem.innerHTML = `
+  <div><input id= ${checkBoxId} class='check' type="checkbox">&nbsp;&nbsp;<input type="text" value=${task.description} class="complete" readonly>
   </div>
   <img id=${task.description} class="more" src=${more} alt="more_vert">
 
-                    `;}
-  litem.classList.add('listitem');
-  lst.insertBefore(litem, lst.children[ind]);
-  ind += 1;
+                    `;
+  }
+  listItem.classList.add('listitem');
+  List.insertBefore(listItem, List.children[PostionToInsert]);
+  PostionToInsert += 1;
 };
 
 export const printtasks = () => {
-  lst.innerHTML = '';
-  lst.innerHTML = `
-                  <li class="listitem first">
-                      Today's To do
-                      <img src=${sync} alt="sync">
-                  </li>
-                  <li class="listitem">
-                    <input class="complete" type="text" placeholder="Add to your list...">
-                    <img src=${enter} alt="subdirectory_arrow_left">
-                  </li>
-                  </li>
-                  <li class="listitem last"><button type="button" class="complete all">clear all completed</button></li>
-                `;
+  [...List.children].forEach((child) => {
+    if (child.querySelector('.more')) {
+      List.removeChild(child);
+    }
+  });
   if (window.localStorage.getItem('tasks') !== null) {
     const tasks = JSON.parse(window.localStorage.getItem('tasks'));
     Taskslist = tasks;
@@ -65,45 +57,54 @@ export const add = (description) => {
   window.localStorage.setItem('tasks', JSON.stringify(Taskslist));
 };
 
-const deleteTask = (id) => {
-  document.getElementById(id).parentElement.remove();
-  Taskslist = Taskslist.filter((b) => b.description !== id);
-  let newind = 1;
+const deleteTask = (taskId) => {
+  document.getElementById(taskId).parentElement.remove();
+  Taskslist = Taskslist.filter((task) => task.description !== taskId);
+  let newindex = 1;
   Taskslist.forEach((task) => {
-    task.index = newind;
-    newind += 1;
+    task.index = newindex;
+    newindex += 1;
   });
   window.localStorage.setItem('tasks', JSON.stringify(Taskslist));
-  ind = 2;
+  PostionToInsert -= 1;
 };
 
-export const edit = (trash) => {
+export const edit = (id, numEdited) => {
+  const trash = document.getElementById(id);
   trash.parentElement.style.backgroundColor = '#fff890';
   trash.src = dbin;
   trash.classList.add('trash');
-  const sib = trash.parentElement.querySelector('.complete');
-  sib.addEventListener('click', () => {
-    sib.readOnly = false;
+  numEdited.edited += 1;
+  const siblingInput = trash.parentElement.querySelector('.complete');
+  siblingInput.addEventListener('click', () => {
+    siblingInput.readOnly = false;
   });
-  sib.addEventListener('change', sib.addEventListener('keypress', (e) => {
+  siblingInput.addEventListener('change', siblingInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      sib.readOnly = true;
-      Taskslist.find(({ description }) => description === trash.id).description = sib.value;
+      siblingInput.readOnly = true;
+      Taskslist.find(({ description }) => description === trash.id).description = siblingInput.value;
       window.localStorage.setItem('tasks', JSON.stringify(Taskslist));
+      trash.classList.remove('trash');
       trash.parentElement.style.backgroundColor = '#fff';
       trash.src = more;
+      numEdited.edited -= 1;
     }
   }));
-  const Dustbin = document.querySelectorAll('.trash');
-  Dustbin.forEach((can) => {
-    can.addEventListener('click', (e) => {
+};
+
+export const deleteItem = () => {
+  const delButtonsList = document.querySelectorAll('.trash');
+  delButtonsList.forEach((deleteButton) => {
+    deleteButton.addEventListener('click', (e) => {
       const { id } = e.target;
       deleteTask(id);
     });
   });
 };
 
-export const dele = ()=>{
+export const dele = () => {
+  const tasky = JSON.parse(window.localStorage.getItem('tasks'));
+  Taskslist = tasky;
   Taskslist = Taskslist.filter((b) => b.completed !== true);
   let newind = 1;
   Taskslist.forEach((task) => {
@@ -111,6 +112,6 @@ export const dele = ()=>{
     newind += 1;
   });
   window.localStorage.setItem('tasks', JSON.stringify(Taskslist));
-  ind =2
+  PostionToInsert = 2;
   printtasks();
-}
+};
