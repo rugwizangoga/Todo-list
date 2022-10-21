@@ -14,6 +14,9 @@ Todo list is a simple web app that helps to organize your day. It simply lists t
 - Javascript
 - Es6 and webpack
 
+# Live demo
+[live link] (https://rugwizangoga.github.io/Todo-list/dist/)
+
 ## Getting Started
 
 $ git clone git@github.com:rugwizangoga/Todo-list.git
