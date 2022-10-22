@@ -15,7 +15,7 @@ you can watch this [video](https://www.youtube.com/watch?v=AcUd-_Yjjqg) for furt
 - Javascript
 - Es6 and webpack
 
-# Live demo
+## Live demo
 [live link](https://rugwizangoga.github.io/Todo-list/dist/)
 
 ## Getting Started
